@@ -35,7 +35,7 @@ Before you begin, ensure you have met the following requirements:
 
 ## Installation
 
-To set up this project on your local machine or EC2 instance:
+To set up this project on your local machine:
 
 1. Clone this repository:
     ```bash
