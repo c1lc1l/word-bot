@@ -1,5 +1,7 @@
 # Word Bot
 
+Be sure to check out my [Dev.to Article](https://dev.to/c1lc1l/deploy-your-discord-bot-using-amazon-ec2-2mdm) on this project!  
+
 ## Table of Contents
 
 1. [Introduction](#introduction)
