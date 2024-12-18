@@ -14,7 +14,6 @@
     6. [Run the Bot](#run-the-bot)
     7. [Keep the Bot Running in the Background](#keep-the-bot-running-in-the-background)
 5. [Usage](#usage)
-6. [Bot Commands](#bot-commands)
 
 ## Introduction
 
