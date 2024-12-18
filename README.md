@@ -1,115 +1,143 @@
-# Discord Word Bot
+# Word Bot
 
-A simple and interactive **Discord bot** built with **Python** that offers word-related functionalities such as sorting, flipping, counting, and more.
+## Table of Contents
 
-## Features
+1. [Introduction](#introduction)
+2. [Prerequisites](#prerequisites)
+3. [Installation](#installation)
+4. [Setting Up the Bot on EC2](#setting-up-the-bot-on-ec2)
+    1. [Launch an EC2 Instance](#launch-an-ec2-instance)
+    2. [Connect to the EC2 Instance](#connect-to-the-ec2-instance)
+    3. [Install Dependencies](#install-dependencies)
+    4. [Clone the Repository](#clone-the-repository)
+    5. [Set Up Environment Variables](#set-up-environment-variables)
+    6. [Run the Bot](#run-the-bot)
+    7. [Keep the Bot Running in the Background](#keep-the-bot-running-in-the-background)
+5. [Usage](#usage)
+6. [Contributing](#contributing)
+7. [License](#license)
 
-- Sort words alphabetically
-- Reverse words
-- Count words
-- Shuffle words randomly
-- And more fun commands!
+## Introduction
 
----
+This is a simple Discord bot that responds to user commands. It was created using `discord.py` and can be deployed on an EC2 instance. This bot is designed for beginners to learn about deploying a bot on AWS.
+
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- **Git** installed on your local machine or EC2 instance.
+- **Python 3** installed on your EC2 instance.
+- A **Discord account** and a bot created in the [Discord Developer Portal](https://discord.com/developers/applications).
+- **AWS account** with access to EC2.
 
 ## Installation
 
-Follow these steps to get the bot up and running on your local machine:
+To set up this project on your local machine or EC2 instance:
 
-### 1. Clone the repository
-
-To get a copy of this project on your computer:
-
-1. Ensure you have [Git](https://git-scm.com/downloads) installed on your computer.
-
-2. Open your terminal or command prompt.
-
-3. Run the following command to clone the repository:
-
+1. Clone this repository:
     ```bash
-    git clone https://github.com/c1lc1l/word-bot.git
+    git clone https://github.com/yourusername/word-bot.git
+    cd word-bot
+    ```
+2. Install dependencies:
+    ```bash
+    pip3 install -r requirements.txt
     ```
 
-4. After running the above command, the project will be downloaded to your computer.
+3. Create a `.env` file in the root directory with your bot's token:
+    ```plaintext
+    DISCORD_BOT_TOKEN=your-discord-bot-token
+    ```
 
-### 2. Navigate to the project directory
+## Setting Up the Bot on EC2
 
-Once the repository is cloned, change into the project directory:
+### Launch an EC2 Instance
 
-```bash
-cd discord-bot
-```
+1. **Sign in to AWS** and go to the **EC2 Dashboard**.
+2. Click **Launch Instance** and select **Amazon Linux 2023 AMI**.
+3. Choose an instance type (e.g., **t2.micro** for the free tier).
+4. Configure your instance, including creating a security group with **SSH** access.
+5. Download the `.pem` key file to SSH into the instance later.
 
-### 3. Install Python and dependencies
+### Connect to the EC2 Instance
 
-Ensure you have Python installed on your machine. If not, you can download it from [python.org](https://www.python.org/downloads/).
+1. Open **Git Bash** or **Terminal** on your local machine.
+2. Navigate to the folder where your `.pem` key is located.
+3. Change permissions for the `.pem` file:
+    ```bash
+    chmod 400 your-key-name.pem
+    ```
+4. SSH into your EC2 instance:
+    ```bash
+    ssh -i your-key-name.pem ec2-user@your-ec2-public-ip
+    ```
 
-Once Python is installed, you can install the required dependencies using `pip`. Run the following command:
+### Install Dependencies
 
-```bash
-pip install -r requirements.txt
-```
+1. Update the package manager and install Python 3 and pip:
+    ```bash
+    sudo yum update -y
+    sudo yum install python3 -y
+    sudo yum install python3-pip -y
+    ```
 
-### 4. Verify installation
+2. Install necessary Python packages:
+    ```bash
+    pip3 install discord.py python-dotenv
+    ```
 
-To verify that Python and `pip` are correctly installed, run the following commands:
+### Clone the Repository
 
-```bash
-python --version
-pip --version
-```
+1. Install Git:
+    ```bash
+    sudo yum install git -y
+    ```
 
-You should see the installed versions of Python and `pip` in your terminal.
+2. Clone the repository:
+    ```bash
+    git clone https://github.com/yourusername/word-bot.git
+    cd word-bot
+    ```
 
----
+### Set Up Environment Variables
 
-## Setup
+1. Create a `.env` file in the root directory:
+    ```bash
+    echo "DISCORD_BOT_TOKEN=your-discord-token" > .env
+    ```
 
-### 1. Create a `.env` file
+### Run the Bot
 
-In the root directory of your project, create a `.env` file and add the following content:
+1. Run the bot on your EC2 instance:
+    ```bash
+    python3 discord-bot.py
+    ```
 
-```plaintext
-DISCORD_TOKEN=your_token_here
-```
+### Keep the Bot Running in the Background
 
-Replace `your_token_here` with your actual Discord bot token. You can obtain this token by creating a bot on the [Discord Developer Portal](https://discord.com/developers/applications).
+To keep the bot running after you close the terminal, use `screen`:
 
----
+1. Install `screen`:
+    ```bash
+    sudo yum install screen -y
+    ```
+
+2. Start a new screen session:
+    ```bash
+    screen -S discord-bot
+    ```
+
+3. Run the bot inside the screen:
+    ```bash
+    python3 discord-bot.py
+    ```
+
+4. Detach from the screen session by pressing `Ctrl + A`, then `D`.
+5. Reattach to the session later:
+    ```bash
+    screen -r discord-bot
+    ```
 
 ## Usage
 
-### 1. Run the bot
-
-Once everything is set up, run the bot with this command:
-
-```bash
-python discord-bot.py
-```
-
-If everything is configured correctly, you should see the bot come online in your Discord server!
-
-### 2. Available commands
-
-Once the bot is running, you can use the following commands in your Discord server:
-
-- `$sort <word1> <word2> <word3>`: Sort the words in ascending order.
-- `$flip <word>`: Reverse the given word.
-- `$count <word1> <word2>`: Count the total number of words.
-- `$shuffle <word1> <word2> <word3>`: Shuffle the words randomly.
-
----
-
-## Contributing
-
-If you'd like to contribute to the project, feel free to fork the repository, make changes, and submit a pull request. Here are a few ways you can contribute:
-
-1. Fixing bugs
-2. Adding new features
-3. Improving documentation
-
----
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Once the bot is running, it will listen for messages in your Discord server. You can interact with the bot based on the commands you’ve set up in the code.
