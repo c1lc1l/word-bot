@@ -14,6 +14,9 @@
     6. [Run the Bot](#run-the-bot)
     7. [Keep the Bot Running in the Background](#keep-the-bot-running-in-the-background)
 5. [Usage](#usage)
+6. [Troubleshooting](#troubleshooting)
+7. [References](#references)
+8. [Acknowledgements](#acknowledgements)
 
 ## Introduction
 
@@ -147,3 +150,92 @@ Once the bot is running, you can use the following commands in your Discord serv
 - `$shuffle <word1> <word2> <word3>`: Shuffle the words randomly.
 - `$hello`: Get a random greeting from the bot.
 - `$cil`: Get a fun easter egg message from the bot.
+
+## Troubleshooting
+
+### 1. **Bot Token Not Found in Environment Variables**  
+**Error:**  
+```
+ERROR - DISCORD_BOT_TOKEN not found in environment variables.
+```  
+**Solution:** Ensure that the `.env` file is correctly placed in the root directory of the project and contains the correct Discord bot token. The `.env` file should look like this:  
+```plaintext
+DISCORD_BOT_TOKEN=your-discord-bot-token
+```  
+If you're using a terminal, make sure to load the environment variables properly. You can also manually set the token in the Python script as a temporary workaround.
+
+### 2. **PyNaCl Not Installed**  
+**Warning:**  
+```
+PyNaCl is not installed, voice will NOT be supported.
+```  
+**Solution:** This is just a warning and won't prevent the bot from running. If you need voice functionality, you can install PyNaCl by running:  
+```bash
+pip3 install pynacl
+```
+
+### 3. **Permission Denied (publickey) When Connecting to EC2**  
+**Error:**  
+```
+Permission denied (publickey).
+```  
+**Solution:** This error typically occurs if the `.pem` key file has incorrect permissions or is not specified correctly. Ensure the `.pem` file has the correct permissions:  
+```bash
+chmod 400 your-key-name.pem
+```  
+Also, verify that you’re using the correct public IP address and the right key pair for your EC2 instance.
+
+### 4. **No Matching Distribution Found for Package**  
+**Error:**  
+```
+ERROR: No matching distribution found for ipython==8.28.0
+```  
+**Solution:** Ensure that you're installing the correct version of the package for your Python version. You may need to update `pip` and install the correct package versions:
+```bash
+python3 -m pip install --upgrade pip
+```  
+Then, retry installing the dependencies.
+
+### 5. **EC2 Instance Not Accessible After Launch**  
+**Error:**  
+Unable to connect to the EC2 instance after launch.  
+**Solution:** Ensure that your security group allows SSH access on port 22 and the public IP of the EC2 instance is correctly configured. Also, verify the `.pem` key file has the correct permissions:
+```bash
+chmod 400 your-key-name.pem
+```
+
+### 6. **Bot Not Responding in Discord**  
+**Error:**  
+Bot is not responding to messages.  
+**Solution:** Verify that the bot is running by checking the logs. If necessary, restart the bot:
+```bash
+python3 discord-bot.py
+```  
+Ensure that your bot token is correctly configured in the `.env` file and that the bot is added to your Discord server.
+
+### 7. **Screen Session Not Found**  
+**Error:**  
+```
+There is no screen to be resumed matching discord-bot.
+```  
+**Solution:** Ensure that you’ve started a screen session correctly by running:
+```bash
+screen -S discord-bot
+```  
+To see all active screen sessions, run:
+```bash
+screen -ls
+```
+Then, reattach to the correct session:
+```bash
+screen -r <session-id>
+```
+
+## References
+
+- [discord.py Documentation](https://discordpy.readthedocs.io/en/stable/): The official documentation for the `discord.py` library, which is used for building the Discord bot.
+- [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/): The official Amazon EC2 documentation for setting up and managing EC2 instances.
+
+## Acknowledgements
+
+- Special thanks to my mentor, Isaeus Guiang, for provisioning the IAM accounts necessary for the EC2 instance and for his support and guidance throughout the development process.
