@@ -27,10 +27,8 @@ To get a copy of this project on your computer:
 3. Run the following command to clone the repository:
 
     ```bash
-    git clone https://github.com/yourusername/yourrepositoryname.git
+    git clone https://github.com/c1lc1l/word-bot.git
     ```
-
-    Replace `yourusername` and `yourrepositoryname` with your actual GitHub username and repository name.
 
 4. After running the above command, the project will be downloaded to your computer.
 
