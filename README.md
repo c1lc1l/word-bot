@@ -14,12 +14,11 @@
     6. [Run the Bot](#run-the-bot)
     7. [Keep the Bot Running in the Background](#keep-the-bot-running-in-the-background)
 5. [Usage](#usage)
-6. [Contributing](#contributing)
-7. [License](#license)
+6. [Bot Commands](#bot-commands)
 
 ## Introduction
 
-This is a simple Discord bot that responds to user commands. It was created using `discord.py` and can be deployed on an EC2 instance. This bot is designed for beginners to learn about deploying a bot on AWS.
+This is a simple Discord bot that responds to user commands. It was created using `discord.py` and can be deployed on an EC2 instance. This bot is designed for beginners to learn about deploying an application on AWS.
 
 ## Prerequisites
 
@@ -81,7 +80,7 @@ To set up this project on your local machine or EC2 instance:
     sudo yum install python3-pip -y
     ```
 
-2. Install necessary Python packages:
+2. Install necessary Python packages (Discord and DotEnv):
     ```bash
     pip3 install discord.py python-dotenv
     ```
@@ -93,7 +92,7 @@ To set up this project on your local machine or EC2 instance:
     sudo yum install git -y
     ```
 
-2. Clone the repository:
+2. Use the clone command:
     ```bash
     git clone https://github.com/yourusername/word-bot.git
     cd word-bot
@@ -140,4 +139,12 @@ To keep the bot running after you close the terminal, use `screen`:
 
 ## Usage
 
-Once the bot is running, it will listen for messages in your Discord server. You can interact with the bot based on the commands you’ve set up in the code.
+Once the bot is running, you can use the following commands in your Discord server:
+
+- `$sort <word1> <word2> <word3>`: Sort the words in ascending order.
+- `$flip <word1> <word2> <word3>`: Reverse the order of the words.
+- `$flipsort <word1> <word2> <word3>`: Sort the words in descending order.
+- `$count <word1> <word2> <word3>`: Count the number of words provided.
+- `$shuffle <word1> <word2> <word3>`: Shuffle the words randomly.
+- `$hello`: Get a random greeting from the bot.
+- `$cil`: Get a fun easter egg message from the bot.
