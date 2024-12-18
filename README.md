@@ -233,9 +233,9 @@ screen -r <session-id>
 
 ## References
 
-- [discord.py Documentation](https://discordpy.readthedocs.io/en/stable/): The official documentation for the `discord.py` library, which is used for building the Discord bot.
+- [Discord.py Documentation](https://discordpy.readthedocs.io/en/stable/): The official documentation for the `discord.py` library, which is used for building the Discord bot.
 - [AWS EC2 Documentation](https://docs.aws.amazon.com/ec2/): The official Amazon EC2 documentation for setting up and managing EC2 instances.
 
 ## Acknowledgements
 
-- Special thanks to my mentor, Isaeus Guiang, for provisioning the IAM accounts necessary for the EC2 instance and for his support and guidance throughout the development process.
+Special thanks to my mentor, Isaeus Guiang, for provisioning the IAM accounts necessary for the EC2 instance and for his support and guidance throughout the development process.
