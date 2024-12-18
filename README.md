@@ -98,7 +98,7 @@ To set up this project on your local machine or EC2 instance:
 
 2. Use the clone command:
     ```bash
-    git clone https://github.com/yourusername/word-bot.git
+    git clone https://github.com/c1lc1l/word-bot.git
     cd word-bot
     ```
 
